@@ -35,6 +35,7 @@ def inference(model_path, output_file, device=None):
             )
 
             pred_texts = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+            pred_texts = [text.replace(' ', '') for text in pred_texts]
             all_predictions.extend(pred_texts)
 
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -45,3 +46,4 @@ def inference(model_path, output_file, device=None):
 
 if __name__ == "__main__":
     inference(model_path=save_path, output_file=pred_path, device=device)
+    # inference(model_path='../model/qspell_bart_base.pth', output_file='../output/bart.txt', device=device)
