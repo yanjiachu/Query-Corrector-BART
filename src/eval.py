@@ -48,11 +48,7 @@ def calculate_metrics(pred, ref):
     }
 
 
-def main():
-    test_file = '../data/sample_test.txt'
-    pred_file = '../output/qwen3.5-plus.txt'
-    csv_file = '../eval/sample_eval.csv'
-
+def eval(test_file, pred_file, csv_file):
     test_data = []
     with open(test_file, 'r', encoding='utf-8') as f:
         for line in f:
@@ -111,4 +107,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    test_file = '../data/sample_test.txt'
+    pred_file = '../output/qwen3.5-plus.txt'
+    csv_file = '../eval/sample_eval.csv'
+    eval(test_file, pred_file, csv_file)
