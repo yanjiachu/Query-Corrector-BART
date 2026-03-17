@@ -27,7 +27,7 @@ def rewrite_query(original_query):
 
     try:
         completion = client.chat.completions.create(
-            model="qwen2-1.5b-instruct",
+            model="qwen2.5-7b-instruct",
             messages=messages,
             # extra_body={"enable_thinking": False},
             stream=True
@@ -44,7 +44,7 @@ def rewrite_query(original_query):
 
 def main():
     input_file = "../data/sample_test.txt"
-    output_file = "../output/qwen2-1.5b-instruct.txt"
+    output_file = "../output/qwen2.5-7b-instruct.txt"
 
     if not os.path.exists(input_file):
         print(f"文件 {input_file} 不存在，请检查路径。")
