@@ -59,5 +59,5 @@ def inference(model_path, test_file, output_file, device=None):
     print(f"Predicting completed. Results saved to {output_file}")
 
 if __name__ == "__main__":
-    # inference(model_path=save_path, output_file=pred_path, device=device)
-    inference(model_path=save_path, test_file= test_file, output_file='../output/bart.txt', device=device)
+    inference(model_path=save_path, output_file=pred_path, device=device)
+    # inference(model_path=save_path, test_file= test_file, output_file='../output/bart.txt', device=device)

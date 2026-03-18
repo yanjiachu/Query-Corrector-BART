@@ -12,7 +12,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 seed = 42
 
 # model_name = 'fnlp/bart-base-chinese'
-model_name = '../bart'
+model_name = '../bart'  # use local model
 save_path = '../model/qspell_bart_3.pth'
 pred_path = '../output/qspell_bart_3.txt'
 pred_path_sample = '../output/bart_3.txt'

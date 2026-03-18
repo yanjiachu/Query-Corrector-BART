@@ -3,7 +3,6 @@ from torch.optim import AdamW
 from transformers import get_linear_schedule_with_warmup
 import logging
 from tqdm import tqdm
-import os
 
 from config import  model_name, save_path, epoch_num, learning_rate, device, train_file
 from data import get_train_dataloader
