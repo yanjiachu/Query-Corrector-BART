@@ -108,7 +108,7 @@ def eval(test_file, pred_file, csv_file):
 
 if __name__ == '__main__':
     test_file = '../data/sample_test.txt'
-    pred_file = '../output/qwen3-max.txt'
+    pred_file = '../output/qwen2.5-1.5B-sft.txt'
     csv_file = '../eval/sample_eval.csv'
     # test_file = '../data/qspell_250k_test.txt'
     # pred_file = '../output/qspell_bart.txt'
