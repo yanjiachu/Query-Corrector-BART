@@ -1,0 +1,3 @@
+﻿dataset_name,avg_cer,avg_precision,avg_recall,avg_f1
+bart_epoch=1,0.070367,0.932762,0.929633,0.931269
+bart_epoch=3,0.063073,0.939686,0.936927,0.938391

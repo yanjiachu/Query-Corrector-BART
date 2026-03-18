@@ -2,7 +2,7 @@ from torch.utils.data import Dataset, DataLoader
 from transformers import AutoTokenizer
 import logging
 
-from config import train_file, test_file, batch_size, max_length, model_name
+from config import batch_size, max_length, model_name
 
 import os
 os.environ['HF_HUB_DISABLE_SYMLINKS_WARNING'] = '1'
@@ -69,13 +69,13 @@ def create_dataloader(file_path, tokenizer, batch_size, max_length, shuffle):
     )
     return dataloader
 
-def get_train_dataloader():
+def get_train_dataloader(file):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    return create_dataloader(train_file, tokenizer, batch_size, max_length, shuffle=True)
+    return create_dataloader(file, tokenizer, batch_size, max_length, shuffle=True)
 
-def get_test_dataloader():
+def get_test_dataloader(file):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    return create_dataloader(test_file, tokenizer, batch_size, max_length, shuffle=False)
+    return create_dataloader(file, tokenizer, batch_size, max_length, shuffle=False)
 
 if __name__ == "__main__":
     print("run data.py directly...")

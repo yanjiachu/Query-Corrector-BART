@@ -5,7 +5,7 @@ import logging
 from tqdm import tqdm
 import os
 
-from config import  model_name, save_path, epoch_num, learning_rate, device
+from config import  model_name, save_path, epoch_num, learning_rate, device, train_file
 from data import get_train_dataloader
 from model import QspellModel
 
@@ -14,7 +14,7 @@ def train(epochs=epoch_num, lr=learning_rate, device=device, save_path=save_path
     logging.basicConfig(level=logging.INFO)
 
     logging.info("Loading training data...")
-    train_loader = get_train_dataloader()
+    train_loader = get_train_dataloader(train_file)
 
     logging.info(f"Loading model {model_name}...")
     model = QspellModel().to(device)

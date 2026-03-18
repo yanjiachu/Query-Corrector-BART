@@ -1,2 +1,0 @@
-﻿dataset_name,avg_cer,avg_precision,avg_recall,avg_f1
-qspell_bart_base_epoch=1,0.070964,0.932965,0.929036,0.931026

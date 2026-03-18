@@ -6,10 +6,12 @@ import torch
 from datetime import datetime
 
 from config import (
-    train_file, test_file, csv_path, batch_size, max_length,
+    train_file, test_file, test_file_sample, csv_path, csv_path_sample, batch_size, max_length,
     epoch_num as default_epochs, learning_rate as default_lr,
     save_path as default_save_path,
-    pred_path as default_pred_path, seed as default_seed
+    pred_path as default_pred_path,
+    pred_path_sample as default_pred_path_sample,
+    seed as default_seed
 )
 from train import train
 from inference import inference
@@ -49,6 +51,8 @@ def parse_args():
                         help='Path to save the trained model')
     parser.add_argument('--output_file', type=str, default=default_pred_path,
                         help='Path to save inference results')
+    parser.add_argument('--output_file_sample', type=str, default=default_pred_path_sample,
+                        help='Path to save inference results(sample)')
     parser.add_argument('--skip_train', action='store_true', default=False,
                         help='Skip training and only run inference')
     parser.add_argument('--skip_inference', action='store_true', default=False,
@@ -84,7 +88,7 @@ def main():
                 lr=args.lr,
                 save_path=args.model_save_path
             )
-            logger.info(f"Training completed. Model saved to {args.model_save_path}")
+            # logger.info(f"Training completed. Model saved to {args.model_save_path}")
         except Exception as e:
             logger.error(f"Error during training: {e}", exc_info=True)
             sys.exit(1)
@@ -92,19 +96,22 @@ def main():
         logger.info("Skipping training phase")
 
     if not args.skip_inference:
-        if not os.path.exists(args.model_save_path):
-            logger.error(f"Model file not found for inference: {args.model_save_path}")
-            sys.exit(1)
-
         logger.info("===== Inference =====")
         logger.info(f"Using model: {args.model_save_path}")
         logger.info(f"Output file: {args.output_file}")
         try:
             inference(
                 model_path=args.model_save_path,
+                test_file=test_file,
                 output_file=args.output_file
             )
             logger.info(f"Inference completed. Results saved to {args.output_file}")
+            inference(
+                model_path=args.model_save_path,
+                test_file=test_file_sample,
+                output_file=args.output_file_sample
+            )
+            logger.info(f"Inference(sample) completed. Results saved to {args.output_file_sample}")
         except Exception as e:
             logger.error(f"Error during inference: {e}", exc_info=True)
             sys.exit(1)
@@ -116,6 +123,7 @@ def main():
         try:
             from eval import eval
             eval(test_file, args.output_file, csv_path)
+            eval(test_file_sample, args.output_file_sample, csv_path_sample)
         except Exception as e:
             logger.error(f"Error during evaluation: {e}", exc_info=True)
             sys.exit(1)
