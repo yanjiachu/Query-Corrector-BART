@@ -100,8 +100,10 @@ Query-Corrector-BART/
 ├── output/                    # 推理输出文件
 └── qwen/
     ├── api.py                 # 调用Qwen API
-    ├── sft_data.py            # SFT训练集生成代码
-    └── sample_data.py         # 示例测试集采样代码
+    ├── sft_data.py            # SFT训练集生成
+    ├── sample_data.py         # 示例测试集采样
+    ├── qwen_inference.py      # SFT模型推理数据集生成
+    └── convert.py             # 模型推理结果格式转换
 ```
 
 ## 实验结果
